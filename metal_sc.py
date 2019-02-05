@@ -7,25 +7,13 @@ This program is based on Python to achieve scratch code, open source based on MI
 class scratch:
     x_listening=""
     def createcharacter(self,re):
-        '''self=Character Name, 
-        re=Picture Source Path'''
             re=self
             turtle.register_shape(self)
             turtle.shape(self)
     class ui:
         def alert_notbool(line="",button="OK",tittle1="",image1=None):
-            '''The prompt box does not return a value.
-            line=The content of the prompt box.
-            button=The button of the prompt box.
-            tittle1=The tittle of the prompt box.
-            image1=The image source path of the prompt box.'''
             return easygui.msgbox(msg=line,tittle=tittle1,ok_button=button,image=image1,root=None)
         def alert(callback_varbool,line1="",image2=None,button1=("","")):
-             '''The prompt box does return a value.
-             callback_varbool=The var of the program.
-            line1=The content of the prompt box.
-            button1=The button of the prompt box.
-            image2=The image source path of the prompt box.'''
             callback_varbool=easygui.ccbox(msg=line1,choices=button1,image=image2)
     class io:
         def ask_suthor(authority=None):
@@ -37,15 +25,24 @@ class scratch:
             elif callback == 0:
                 authority=False
         def readfile(filename,filepath):
-            if authority == True:
-                filecontent=None
-                with open(filepath+filename,'rb') as f:
-                    filecontent=f.read()
+            try:
+                if authority == True:
+                    filecontent=None
+                    with open(filepath+filename,'rb') as f:
+                        filecontent=f.read()
+                elif authority == False:
+                    raise "Error:No administrative authority"
+            except NameError:
+                print("Error:No administrative authority")
+                exit(1)
     class pen:
+        draw_bool=None
         def drawBegin():
+            draw_bool=True
             turtle.pendown()
         def drawFinish():
             turtle.penup()
+            draw_bool=False
         def pen_wight(self):
             turtle.width(self)
         def pen_color(self):
