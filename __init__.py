@@ -1,5 +1,1 @@
-import easygui
-import time
-import turtle
-import os
-import metal_sc
+from metal_sc import scratch
